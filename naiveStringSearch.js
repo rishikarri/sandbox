@@ -3,8 +3,27 @@ function naiveStringSearch(fullWord, strMatch) {
 
     for (let i = 0; i < fullWord.length; i++) {
         for (let j = 0; j < strMatch.length; j++) {
-            if (fullWord[i+j] !== strMatch[j]) break;
-            if (j == strMatch.length - 1) matches++;             
+            if (fullWord[i+j] !== strMatch[j]) {
+                console.log('BREAK');
+                const breakInfo = {
+                    i, 
+                    j, 
+                    'fullWordLetter': fullWord[i+j],
+                    'strMatchLetter': strMatch[j]
+                }
+                console.log("BREAK:", breakInfo)
+                break;
+            }
+            if (j == strMatch.length - 1) {
+                const matchInformation = {
+                    i, 
+                    j, 
+                    'fullWordLetter': fullWord[i+j],
+                    'strMatchLetter': strMatch[j]
+                }
+                console.log("FOUND A MATCH", matchInformation)
+                matches++;             
+            }
         }
         
     }
@@ -16,5 +35,5 @@ function naiveStringSearch(fullWord, strMatch) {
 
 // test to see if it works 
 
-const result = naiveStringSearch('I like to drink coffee a few days a week. I like to drink tea on the other days.', 'f');
+const result = naiveStringSearch('information', 'or');
 console.log('Total Matches: ', result);
