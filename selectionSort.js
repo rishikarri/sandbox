@@ -1,14 +1,19 @@
 function selectionSort(arr) { 
     for (let i = 0; i < arr.length; i++) {
         let smallestNumberIndex = 0; 
-        for (let j = 0; j < array.length; j++) {
-
-            const element = array[j];
-            
+        for (let j = i + 1; j < arr.length; j++) {
+            if (arr[i] > arr[j]) {
+                console.log("SMALLER NUMBER FOUND");
+                smallestNumberIndex = j;
+                
+                // SWAP
+                let temp = arr[i];
+                arr[i] = arr[smallestNumberIndex];
+                arr[smallestNumberIndex] = temp;
+            }
         }
-        const element = arr[i];
-        
     }
+    return arr;        
 }
 
 // test results
