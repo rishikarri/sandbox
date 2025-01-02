@@ -37,3 +37,4 @@ function naiveStringSearch(fullWord, strMatch) {
 
 const result = naiveStringSearch('information', 'or');
 console.log('Total Matches: ', result);
+
