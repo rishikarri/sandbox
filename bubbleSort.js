@@ -7,6 +7,7 @@ function bubbleSort(arr) { // mutates original array
     let comparisonsPerOuterLoop = 0;
     for (let i = arr.length; i > 0; i--) {        
         const num1 = arr[i];
+        let swapCounter = 0;
         for (let j = 0; j < i - 1; j++) {
             comparisonsPerOuterLoop++; 
             const num2 = arr[j];
@@ -17,8 +18,11 @@ function bubbleSort(arr) { // mutates original array
                 arr[j] = num3;
                 arr[j+1] = num2;
 
-                // console.log("SWAP")
+                console.log("SWAP")
+                swapCounter++;
             }
+
+        
             
             const logData = {num1, num2, num3}
         }
@@ -26,7 +30,14 @@ function bubbleSort(arr) { // mutates original array
         console.log('Array Current Order Outer LOOP', arr) 
         console.log('Comparisons per outer loop', comparisonsPerOuterLoop) 
 
+        if (swapCounter === 0) {
+            // no need to finish the algo
+            console.log('finished sorting early')
+            return arr; 
+        }
+
         // reset 
+        swapCounter = 0;
         comparisonsPerOuterLoop = 0;
         
     }    
@@ -36,5 +47,5 @@ function bubbleSort(arr) { // mutates original array
 
 // test results
 
-const sortedList = bubbleSort([2, 4, 3, 19, 9999, 12, 1, 98, 4])
+const sortedList = bubbleSort([1, 2, 17, 3, 99, 6])
 console.log('sortedList', sortedList)
