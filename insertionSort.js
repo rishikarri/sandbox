@@ -4,10 +4,29 @@ function insertionSort(arr) {
     const arrCopy = arr.slice(); // copy the array so we don't mutate the original arr
 
     for (let i = 0; i < arrCopy.length; i++) {
-        
-        for (let j = i + 1; j < arrCopy.length; j++) {
-        
+        let itemToSort = i + 1; 
+        let swapSpot = itemToSort;
+        for (let j = i; j >= 0; j--) {
+            if (arrCopy[itemToSort] < arrCopy[j]) {
+                // update swap spot
+                swapSpot = j;
+                
+
+                // const 
+                
+            }            
         }
+
+        if (swapSpot !== itemToSort) {
+            const temp = arrCopy[swapSpot];
+            arrCopy[swapSpot] = arrCopy[itemToSort];
+            arrCopy[itemToSort] = arrCopy[swapSpot];
+            console.log("SWAP")
+        }
+        
+        // if (itemToSort )
+        
+        
 
         
     }
