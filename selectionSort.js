@@ -4,18 +4,26 @@ function selectionSort(arr) {
     const arrCopy = arr.slice(); // copy the array so we don't mutate the original arr
 
     for (let i = 0; i < arrCopy.length; i++) {
-        let smallestNumberIndex = 0; 
+        let smallestNumberIndex = i; 
+        console.log('*****')
+        console.log("I iteration:", i)
+        console.log('arrCopy', arrCopy)
         for (let j = i + 1; j < arrCopy.length; j++) {
-            if (arrCopy[i] > arrCopy[j]) {
-                console.log("SMALLER NUMBER FOUND");
+            console.log('J iteration:', j)
+            if (arrCopy[smallestNumberIndex] > arrCopy[j]) {
+                console.log("SMALLER NUMBER FOUND. arrCopy[j]", arrCopy[j]);
                 smallestNumberIndex = j;
                 
-                // SWAP
-                let temp = arrCopy[i];
-                arrCopy[i] = arrCopy[smallestNumberIndex];
-                arrCopy[smallestNumberIndex] = temp;
             }
         }
+        if (smallestNumberIndex !== i) {
+            // SWAP
+            var temp = arrCopy[i];
+            arrCopy[i] = arrCopy[smallestNumberIndex];
+            arrCopy[smallestNumberIndex] = temp;
+            
+        }
+        
     }
     return arrCopy;        
 }
