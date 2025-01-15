@@ -27,6 +27,16 @@ class SinglyLinkedList {
     pop() {
         if (!this.head) return undefined;
         let current = this.head 
+        this.length--;
+
+        let poppedNode;
+
+        if (this.length === 0) {
+            poppedNode = this.head
+            this.head = null;
+            this.tail = null
+            return poppedNode;
+        }
 
         // traverse to the second last node 
         while (current.next != this.tail) {
@@ -34,13 +44,11 @@ class SinglyLinkedList {
             current = current.next; 
         }
 
-        const poppedNode = this.tail;
+        poppedNode = this.tail;
         this.tail = current;
         delete this.tail.next;
         this.tail.next = null;
-        this.length--;
-
-
+        
         return poppedNode;
     }
 }
@@ -55,5 +63,4 @@ const test1 = new SinglyLinkedList();
 test1.push("Hi");
 test1.push("Hello")
 test1.push(9999)
-console.log("HI")
 
