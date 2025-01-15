@@ -58,6 +58,32 @@ class SinglyLinkedList {
         this.length--; 
         return returnNode;
     }
+    unshift(val) {
+        this.length++;
+        const newNode = new Node(val)
+        if (!this.head) {
+            this.head = newNode
+            this.tail = newNode
+            return;
+        }
+        newNode.next = this.head;
+        this.head = newNode; 
+        
+    }
+    get(index) {
+        if (index < 0) return null; 
+        if (index > this.length) return null; 
+
+        let counter = 0; 
+        let current = this.head;
+        while (counter !== index) {
+            current = current.next
+            counter++; 
+        }
+        // we know we have reached the index 
+        return current; 
+
+    }
 }
 
 
