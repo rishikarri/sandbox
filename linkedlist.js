@@ -51,6 +51,13 @@ class SinglyLinkedList {
         
         return poppedNode;
     }
+    shift() {
+        if (!this.head) return undefined; 
+        const returnNode = this.head; 
+        this.head = this.head.next;
+        this.length--; 
+        return returnNode;
+    }
 }
 
 
