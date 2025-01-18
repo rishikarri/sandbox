@@ -68,6 +68,25 @@ class BinarySearchTree {
             }
         }
     }
+    breadthFirstSearch() {
+        const visitedNodes = []
+        const finalList = []
+        
+        visitedNodes.unshift(this.root)
+        let nodeToCheck;
+        while (visitedNodes.length > 0) {
+            nodeToCheck = visitedNodes.pop()
+            finalList.push(nodeToCheck.val)
+            if (nodeToCheck.left) {
+                visitedNodes.unshift(nodeToCheck.left)                
+            }
+            if(nodeToCheck.right) {
+                visitedNodes.unshift(nodeToCheck.left)
+            }
+        }
+        return finalList
+
+    }
 }
 
 
