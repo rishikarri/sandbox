@@ -85,7 +85,26 @@ class BinarySearchTree {
             }
         }
         return finalList
+    }
+    depthFirstSearch() {
+        const finalList = []
+        
+        let current = this.root
+        // queue.push(this.root)
 
+        function traverse(node) {
+            finalList.push(node.val);
+            if (node.left) {
+                traverse(node.left)
+            }
+
+            if (node.right) {
+                traverse(node.right)
+            }
+        }
+        traverse(current)
+        
+        return finalList
     }
 }
 
@@ -102,10 +121,11 @@ test1.breadthFirstSearch()
 
 // const foundNode = test1.find(7)
 const listOfNodes = test1.breadthFirstSearch()
+const listOfNodes2 = test1.depthFirstSearch()
 console.log("HI")
 
 
 //             15
 //         10      16
 //     7      11               
-// 4
+// 4            13
