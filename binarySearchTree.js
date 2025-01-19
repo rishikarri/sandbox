@@ -69,19 +69,19 @@ class BinarySearchTree {
         }
     }
     breadthFirstSearch() {
-        const visitedNodes = []
+        const queue = []
         const finalList = []
         
-        visitedNodes.unshift(this.root)
+        queue.push(this.root)
         let nodeToCheck;
-        while (visitedNodes.length > 0) {
-            nodeToCheck = visitedNodes.pop()
+        while (queue.length > 0) {
+            nodeToCheck = queue.shift()
             finalList.push(nodeToCheck.val)
             if (nodeToCheck.left) {
-                visitedNodes.unshift(nodeToCheck.left)                
+                queue.push(nodeToCheck.left)                
             }
             if(nodeToCheck.right) {
-                visitedNodes.unshift(nodeToCheck.left)
+                queue.push(nodeToCheck.right)
             }
         }
         return finalList
@@ -93,8 +93,19 @@ class BinarySearchTree {
 const test1 = new BinarySearchTree(); 
 test1.insert(15)
 test1.insert(10)
+test1.insert(16)
 test1.insert(7)
+test1.insert(11)
 test1.insert(4)
-const foundNode = test1.find(7)
+test1.insert(13)
+test1.breadthFirstSearch()
+
+// const foundNode = test1.find(7)
+const listOfNodes = test1.breadthFirstSearch()
 console.log("HI")
 
+
+//             15
+//         10      16
+//     7      11               
+// 4
