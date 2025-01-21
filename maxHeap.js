@@ -34,6 +34,12 @@ class MaxBinaryHeap {
 
     }
     extractMax() {
+        if (this.values.length === 0) {
+            return undefined;
+        }
+        if (this.values.length === 1) {
+            return this.values.pop(); 
+        }
         swap(this.values, 0, this.values.length -1);
         const returnVal = this.values.pop();
         let parentIdx = 0; 
@@ -77,7 +83,7 @@ test2.insert(39);
 test2.insert(33);
 test2.insert(18);
 test2.insert(50);
-const maxNode = test2.extractMax();
+// const maxNode = test2.extractMax();
 
 console.log("HI")
 
