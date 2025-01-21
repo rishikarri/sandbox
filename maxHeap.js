@@ -33,6 +33,39 @@ class MaxBinaryHeap {
         }
 
     }
+    extractMax() {
+        swap(this.values, 0, this.values.length -1);
+        const returnVal = this.values.pop();
+        let parentIdx = 0; 
+        let leftChildIdx, rightChildIdx;
+
+        while(true) {            
+            leftChildIdx = 2 * parentIdx + 1; 
+            rightChildIdx = 2 * parentIdx + 2; 
+
+            let parentVal = this.values[parentIdx]
+            let leftVal = this.values[leftChildIdx]
+            let rightVal = this.values[rightChildIdx]  
+
+            // filter out undefineds 
+            const filteredVals = [parentVal, leftVal, rightVal].filter(item => item !== undefined)
+
+            const maxNumber = Math.max(...filteredVals);
+
+            if (maxNumber === parentVal) {
+                return returnVal
+            }
+
+            if (maxNumber === leftVal) {
+                swap(this.values, parentIdx, leftChildIdx)
+                parentIdx = leftChildIdx
+            } 
+            if (maxNumber === rightVal) {
+                swap(this.values, parentIdx, rightChildIdx)
+                parentIdx = rightChildIdx
+            }
+        }
+    }
 }
 
 const test1 = [41, 39, 33, 18, 27, 12]; 
@@ -44,9 +77,10 @@ test2.insert(39);
 test2.insert(33);
 test2.insert(18);
 test2.insert(50);
+const maxNode = test2.extractMax();
 
 console.log("HI")
 
-
-            //     50 
-            // 18      39
+                        // 50 
+                //     41          33
+                // 18      39
