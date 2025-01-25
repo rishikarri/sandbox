@@ -22,25 +22,27 @@ class PriorityQueue {
     }
     
     enqueue(val, priority) {
-        const newNode = Node(val, priority); 
+        const newNode =new Node(val, priority); 
 
         if (this.nodes.length === 0) {
-            this.nodes.push(node)
+            this.nodes.push(newNode)
             return this;
         }
 
-        this.nodes.enqueue(newNode);
+        // put node at top of the minHeap 
+        this.nodes.unshift(newNode);
         
         let parentIdx = 0; 
         let leftChildIdx, rightChildIdx;
 
+        // find where it belongs 
         while(true) {            
             leftChildIdx = 2 * parentIdx + 1; 
             rightChildIdx = 2 * parentIdx + 2; 
 
-            let parentVal = this.nodes[parentIdx].val;
-            let leftVal = this.nodes[leftChildIdx].val;
-            let rightVal = this.nodes[rightChildIdx].val;  
+            let parentVal = this.nodes[parentIdx]?.val;
+            let leftVal = this.nodes[leftChildIdx]?.val;
+            let rightVal = this.nodes[rightChildIdx]?.val;  
 
             // filter out undefineds 
             const filteredVals = [parentVal, leftVal, rightVal].filter(item => item !== undefined)
@@ -48,6 +50,7 @@ class PriorityQueue {
             const minNumber = Math.min(...filteredVals);
 
             if (minNumber === parentVal) {
+                // it's in the right spot already
                 return this
             }
 
@@ -66,4 +69,8 @@ class PriorityQueue {
 const priorityQ = new PriorityQueue()
 
 priorityQ.enqueue(2);
+priorityQ.enqueue(3);
+priorityQ.enqueue(4);
+priorityQ.enqueue(7);
 priorityQ.enqueue(1);
+console.log('HI')

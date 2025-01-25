@@ -7,7 +7,7 @@ function swap(arr, index1, index2) {
   
     // Assign the temporary value to index2
     arr[index2] = temp;
-  }
+}
 
   
 class MaxBinaryHeap {
