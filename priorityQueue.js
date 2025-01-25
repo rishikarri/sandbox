@@ -40,25 +40,25 @@ class PriorityQueue {
             leftChildIdx = 2 * parentIdx + 1; 
             rightChildIdx = 2 * parentIdx + 2; 
 
-            let parentVal = this.nodes[parentIdx]?.val;
-            let leftVal = this.nodes[leftChildIdx]?.val;
-            let rightVal = this.nodes[rightChildIdx]?.val;  
+            let parentPriority = this.nodes[parentIdx]?.priority;
+            let leftPriority = this.nodes[leftChildIdx]?.priority;
+            let rightPriority = this.nodes[rightChildIdx]?.priority;  
 
             // filter out undefineds 
-            const filteredVals = [parentVal, leftVal, rightVal].filter(item => item !== undefined)
+            const filteredVals = [parentPriority, leftPriority, rightPriority].filter(item => item !== undefined)
 
             const minNumber = Math.min(...filteredVals);
 
-            if (minNumber === parentVal) {
+            if (minNumber === parentPriority) {
                 // it's in the right spot already
                 return this
             }
 
-            if (minNumber === leftVal) {
+            if (minNumber === leftPriority) {
                 swap(this.nodes, parentIdx, leftChildIdx)
                 parentIdx = leftChildIdx
             } 
-            if (minNumber === rightVal) {
+            if (minNumber === rightPriority) {
                 swap(this.nodes, parentIdx, rightChildIdx)
                 parentIdx = rightChildIdx
             }
@@ -68,9 +68,13 @@ class PriorityQueue {
 
 const priorityQ = new PriorityQueue()
 
-priorityQ.enqueue(2);
-priorityQ.enqueue(3);
-priorityQ.enqueue(4);
-priorityQ.enqueue(7);
-priorityQ.enqueue(1);
+priorityQ.enqueue('abc', 5);
+priorityQ.enqueue('cde', 4);
+priorityQ.enqueue('fgef', 11);
+priorityQ.enqueue('weoif', 3);
+priorityQ.enqueue('aweoi', 1);
 console.log('HI')
+
+            //         1
+            //     3       4
+            // 11      5
