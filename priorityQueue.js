@@ -1,3 +1,13 @@
+function swap(arr, index1, index2) {
+    // Use a temporary variable to store the value at index1
+    const temp = arr[index1];
+  
+    // Assign the value at index2 to index1
+    arr[index1] = arr[index2];
+  
+    // Assign the temporary value to index2
+    arr[index2] = temp;
+}
 class Node {
     constructor(val, priority) {
         this.val = val;
@@ -8,32 +18,18 @@ class Node {
 
 class PriorityQueue {
     constructor() {
-        this.values = [];
+        this.nodes = [];
     }
     
-    insert(element) {
-        this.values.push(element);
-        this.bubbleUp()
-    }
-    
-    bubbleUp() {
-        let idx = this.values.length - 1;    
-        let parentIdx = Math.floor((idx - 1) / 2); 
-        
-        while (idx > 0) {
-            parentIdx = Math.floor((idx - 1) / 2)
-            if (this.values[idx] > this.values[parentIdx]) {
-                swap(this.values, idx, parentIdx);
-            }
-            idx = parentIdx; 
-        }
+    enqueue(val, priority) {
+        const newNode = Node(val, priority); 
 
-    }
-    enqueue(node) {
-        if (this.values.length === 0) {
-            this.values.push(node)
+        if (this.nodes.length === 0) {
+            this.nodes.push(node)
             return this;
         }
+
+        this.nodes.enqueue(newNode);
         
         let parentIdx = 0; 
         let leftChildIdx, rightChildIdx;
@@ -42,9 +38,9 @@ class PriorityQueue {
             leftChildIdx = 2 * parentIdx + 1; 
             rightChildIdx = 2 * parentIdx + 2; 
 
-            let parentVal = this.values[parentIdx]
-            let leftVal = this.values[leftChildIdx]
-            let rightVal = this.values[rightChildIdx]  
+            let parentVal = this.nodes[parentIdx].val;
+            let leftVal = this.nodes[leftChildIdx].val;
+            let rightVal = this.nodes[rightChildIdx].val;  
 
             // filter out undefineds 
             const filteredVals = [parentVal, leftVal, rightVal].filter(item => item !== undefined)
@@ -56,13 +52,18 @@ class PriorityQueue {
             }
 
             if (minNumber === leftVal) {
-                swap(this.values, parentIdx, leftChildIdx)
+                swap(this.nodes, parentIdx, leftChildIdx)
                 parentIdx = leftChildIdx
             } 
             if (minNumber === rightVal) {
-                swap(this.values, parentIdx, rightChildIdx)
+                swap(this.nodes, parentIdx, rightChildIdx)
                 parentIdx = rightChildIdx
             }
         }
     }
 }
+
+const priorityQ = new PriorityQueue()
+
+priorityQ.enqueue(2);
+priorityQ.enqueue(1);
