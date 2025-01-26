@@ -20,18 +20,9 @@ class PriorityQueue {
     constructor() {
         this.nodes = [];
     }
-    
-    enqueue(val, priority) {
-        const newNode =new Node(val, priority); 
 
-        if (this.nodes.length === 0) {
-            this.nodes.push(newNode)
-            return this;
-        }
-
-        // put node at top of the minHeap 
-        this.nodes.unshift(newNode);
-        
+    sinkDown() {
+        // compares root node with children until it finds the correct spot for it 
         let parentIdx = 0; 
         let leftChildIdx, rightChildIdx;
 
@@ -63,6 +54,29 @@ class PriorityQueue {
                 parentIdx = rightChildIdx
             }
         }
+    }
+    
+    enqueue(val, priority) {
+        const newNode =new Node(val, priority); 
+
+        if (this.nodes.length === 0) {
+            this.nodes.push(newNode)
+            return this;
+        }
+
+        // put node at top of the minHeap 
+        this.nodes.unshift(newNode);
+
+        this.sinkDown();
+        
+        
+    }
+    dequeue() {
+        const firstNode = this.nodes.shift()
+        if (this.nodes.length > 1) {
+            this.sinkDown();
+        }
+        return firstNode; 
     }
 }
 
