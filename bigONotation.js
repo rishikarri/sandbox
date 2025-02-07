@@ -35,7 +35,7 @@ function sumLast2LessEfficient(arr) {
 
 const arrToSum = [1, 2, 6, 19, 2222, 12, 28, 29, 1, 3, 9, 1, 3, 4] // should return 7 
 
-const result = sumLast2(arrToSum);
+const result = sumLast2LessEfficient(arrToSum);
 
 console.log(result);
 

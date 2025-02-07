@@ -3,6 +3,22 @@ class HashTable {
         this.keyMap = new Array(size);
     }
 
+    set(key, value) {
+        const hash = this._hash(key); 
+
+        const valAtLocation = this.keyMap[hash]
+        if (valAtLocation) {
+            if (valAtLocation.length) {
+                valAtLocation.push([hash, value])
+            } else {
+                // not an array yet 
+                this.keyMap = []; 
+                this.keyMap.push(valAtLocation)
+                this.keyMap.push([key, value])
+            }
+        }
+    }
+
     _hash(key) {
         let total = 0; 
         let WEIRD_PRIME = 31; 
