@@ -40,8 +40,8 @@ var addTwoNumbers = function(l1, l2) {
     
         nums1.reverse()
         nums2.reverse()
-        const number1 = Number(nums1.join(''))
-        const number2 = Number(nums2.join(''))
+        const number1 = BigInt(nums1.join(''))
+        const number2 = BigInt(nums2.join(''))
     
         // add 
     
@@ -50,6 +50,7 @@ var addTwoNumbers = function(l1, l2) {
         console.log(number2)
     
         const total = number1 + number2; 
+        console.log(total, 'total')
     
         const totalArr = total.toString().split('')
         totalArr.reverse()
