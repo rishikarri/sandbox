@@ -8,25 +8,27 @@ class TreeNode:
         self.right = right
 
 class Solution:
-    def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
-        if not preorder or not inorder:
-            return None
-        
-        # preorder goes root, left, right
-        # inorder goes left, root, right 
-        root_val = preorder[0]
-        root_idx = inorder.index(root_val)
+    def buildTree(self, inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
+        #  we know that postorder has the root at the end 
+        if not inorder or not postorder: 
+            return None 
+
+        # inorder goes left, root, right
+        # postorder goes left, right, root
+
+        root_val = postorder[len(postorder) - 1]
+        root_idx = inorder.index(root_val) # we use inorder to find out how long the left is 
         root = TreeNode(root_val)
 
-        preorder_left = preorder[1:root_idx + 1]
-        preorder_right = preorder[root_idx + 1:]
+        postorder_left = postorder[:root_idx]
+        postorder_right = postorder[root_idx: len(postorder) - 1]
         inorder_left = inorder[:root_idx]
         inorder_right = inorder[root_idx + 1:]
 
-        root.left = self.buildTree(preorder_left, inorder_left)
-        root.right = self.buildTree(preorder_right, inorder_right)
+        root.left = self.buildTree(inorder_left, postorder_left)
+        root.right = self.buildTree(inorder_right, postorder_right)
 
-        return root
+        return root 
 
         
         
