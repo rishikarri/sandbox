@@ -43,11 +43,7 @@ class Solution:
 
         output = []
         for key in levels:
-            # print(key)
-            # print('levels[key]', levels[key])
             for idx, node in enumerate(levels[key]): 
-                print('idx', idx)
-                print('levels[key]', levels[key])
                 output.append(levels[key][idx].val)
                 if (idx == len(levels[key]) - 1):
                     output.append("#")
@@ -56,16 +52,12 @@ class Solution:
                 if idx < (len(levels[key]) - 1):
                     levels[key][idx].next = levels[key][idx + 1]
 
-        # print('levels2', levels)
-        print('levels', levels.get(1))
 
-        level1_output = levels.get(1)
-        print('level1 output', level1_output[0].next.val)
-        print(type(level1_output))
 
-        print('output', output)
         return root
             
         # figure out how to solve for something to the right that's not on the immediate same level
+
+        
 
         
