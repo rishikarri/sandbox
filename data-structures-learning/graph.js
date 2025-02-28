@@ -17,5 +17,8 @@ class Graph {
 a = new Graph()
 
 a.addVertex("Tokyo")
+a.addVertex("Dallas")
+
+a.addEdge("Tokyo", "Dallas")
 
 console.log("HI")
