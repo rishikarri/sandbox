@@ -36,6 +36,6 @@ a.addEdge("Tokyo", "Dallas")
 a.addEdge("Atlanta", "Milwaukee")
 a.addEdge("Atlanta", "Tokyo")
 
-a.removeEdge("Atlanta", "Tokyo")
+a.removeVertex("Tokyo")
 
 console.log("HI")
