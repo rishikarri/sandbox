@@ -23,6 +23,31 @@ class Graph {
         }
         delete this.adjacenyList[vertex]
     }
+
+    depthFristTraversalIterative(start) { 
+        let stack = [start]
+        let result = []
+        let visited = {
+            
+        }
+        visited[start] = true
+        let currentVertex
+        const adjacenyList = this.adjacenyList;
+        while (stack.length) {
+            console.log('stack', stack)
+            // get the last element of the stack 
+            currentVertex = stack.pop();
+            result.push(currentVertex);            
+            adjacenyList[currentVertex].forEach((neighbor) => {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true
+                    stack.push(neighbor)
+                }
+            })
+            
+        }
+        return result
+    }
     depthFirstTraversal(vertex) {
         const results = [] 
         const visited = {}
@@ -69,6 +94,6 @@ g.addEdge("D", "E")
 g.addEdge("D", "F")
 g.addEdge("E", "F")
 
-results = g.depthFirstTraversal("A")
+results = g.depthFristTraversalIterative("A")
 
 console.log("HI")
