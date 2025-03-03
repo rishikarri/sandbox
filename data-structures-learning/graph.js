@@ -23,19 +23,33 @@ class Graph {
         }
         delete this.adjacenyList[vertex]
     }
+    depthFirstTraversal(vertex) {
+        results = [] 
+        if (vertex === null) {
+            return
+        }
+        
+
+    }
 }
 
-a = new Graph()
+g = new Graph()
 
-a.addVertex("Tokyo")
-a.addVertex("Dallas")
-a.addVertex("Atlanta")
-a.addVertex("Milwaukee")
+g.addVertex("A")
+g.addVertex("B")
+g.addVertex("C")
+g.addVertex("D")
+g.addVertex("E")
+g.addVertex("F")
 
-a.addEdge("Tokyo", "Dallas")
-a.addEdge("Atlanta", "Milwaukee")
-a.addEdge("Atlanta", "Tokyo")
+g.addEdge("A", "B")
+g.addEdge("A", "C")
+g.addEdge("B", "D")
+g.addEdge("C", "E")
+g.addEdge("D", "E")
+g.addEdge("D", "F")
+g.addEdge("E", "F")
 
-a.removeVertex("Tokyo")
+// a.removeVertex("Tokyo")
 
 console.log("HI")
