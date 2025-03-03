@@ -24,10 +24,29 @@ class Graph {
         delete this.adjacenyList[vertex]
     }
     depthFirstTraversal(vertex) {
-        results = [] 
+        const results = [] 
+        const visited = {}
         if (vertex === null) {
             return
         }
+        const adjacenyList = this.adjacenyList
+
+        function depthFirstTraverse(vertex1) {
+            results.push(vertex1)
+            visited[vertex1] = true
+            
+
+            adjacenyList[vertex1].forEach((neightbor) => {
+                console.log('neighbor', neightbor); 
+                if (!visited[neightbor]) {
+                    depthFirstTraverse(neightbor)
+                }
+            })
+        }
+        depthFirstTraverse(vertex)
+
+        return results
+
         
 
     }
@@ -50,6 +69,6 @@ g.addEdge("D", "E")
 g.addEdge("D", "F")
 g.addEdge("E", "F")
 
-// a.removeVertex("Tokyo")
+results = g.depthFirstTraversal("A")
 
 console.log("HI")
