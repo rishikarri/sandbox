@@ -71,9 +71,27 @@ class Graph {
         depthFirstTraverse(vertex)
 
         return results
-
+    }
+    breadthFirstSearch(start) {
+        const q = [start]
+        const result = []
+        const visitedNodesLookup = {}
+        visitedNodesLookup[start] = true
         
-
+        let currentVertex
+        while(q.length) {
+            currentVertex = q.shift()
+            result.push(currentVertex)
+            
+            this.adjacenyList[currentVertex].forEach((neighbor) => {
+                if (!visitedNodesLookup[neighbor]) {
+                    visitedNodesLookup[currentVertex] = true
+                    q.push(neighbor)
+                    
+                }
+            })
+        }
+        return result
     }
 }
 
@@ -94,6 +112,6 @@ g.addEdge("D", "E")
 g.addEdge("D", "F")
 g.addEdge("E", "F")
 
-results = g.depthFristTraversalIterative("A")
+results = g.breadthFirstSearch("A")
 
 console.log("HI")
