@@ -85,7 +85,7 @@ class Graph {
             
             this.adjacenyList[currentVertex].forEach((neighbor) => {
                 if (!visitedNodesLookup[neighbor]) {
-                    visitedNodesLookup[currentVertex] = true
+                    visitedNodesLookup[neighbor] = true
                     q.push(neighbor)
                     
                 }
