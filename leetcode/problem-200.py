@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
         if not grid: 
@@ -12,10 +15,10 @@ class Solution:
         print('columns', columns)
 
         def dfs_convert_to_water(land_row, land_column):
-            if (land_column > columns or land_row > rows):
+            if (land_column > columns - 1 or land_row > rows - 1):
                 return
             
-            if land_column < 0 or land_row < 0:
+            if (land_column < 0 or land_row < 0):
                 return
             
             if grid[land_row][land_column] == "0":
@@ -36,8 +39,14 @@ class Solution:
                 print(row, column, 'row column')
                 # if we come across land, increase num_islands 
                 # also convert every 1 on this island to 0 because we already "counted" this one
-                if (grid[row][column] == 1): 
+                if (grid[row][column] == "1"): 
                     num_islands += 1 
                     dfs_convert_to_water(row, column)
 
         return num_islands
+
+grid = [["1","1","1","1","0"],["1","1","0","1","0"],["1","1","0","0","0"],["0","0","0","0","0"]]
+
+result = Solution().numIslands(grid)
+
+print(result)
