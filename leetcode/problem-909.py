@@ -1,5 +1,5 @@
 from collections import deque
-
+from typing import List
 class Solution:
     def snakesAndLadders(self, board: List[List[int]]) -> int:
         n = len(board)
