@@ -33,15 +33,24 @@ class Solution:
             if square == n * n:
                 return moves
 
-            for i in range(1, 7):                 
+            for i in range(1, 7):
+                if square + i > n * n: 
+                    # you cannot go over the last square, you have to land right on it
+                    continue                              
                 next_square = num_to_board_square(square + i)
                 if next_square not in visited:
                     visited.add(next_square)
                     q.append((next_square, moves + 1))
+        
+        return -1
 
 
 board = [[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,35,-1,-1,13,-1],[-1,-1,-1,-1,-1,-1],[-1,15,-1,-1,-1,-1]]
 
-output = Solution().snakesAndLadders(board)
+board2 = [[-1,-1],[-1,3]]
+
+board3 = [[1,1,-1],[1,1,1],[-1,1,1]]
+
+output = Solution().snakesAndLadders(board2)
 
 print(output)
