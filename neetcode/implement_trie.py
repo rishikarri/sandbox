@@ -34,12 +34,22 @@ class PrefixTree:
             current = current.children[c]
             
 
-        
-
     def startsWith(self, prefix: str) -> bool:
-        return True
+        current = self.root
+        for idx, c in enumerate(prefix):            
+            if idx == (len(prefix) - 1):
+                return True
+            
+            if c not in current.children:
+                return False
+            
+            current = current.children[c]
+
     
 pt = PrefixTree()
 pt.insert("apple")
+pt.insert("apply")
+pt.search("apple")
+starts_with = pt.startsWith("appl")
 exists = pt.search("applde")
 print("Done")
