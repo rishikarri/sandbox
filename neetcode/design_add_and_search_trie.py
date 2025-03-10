@@ -17,31 +17,29 @@ class WordDictionary:
             current = current.children[c]
         
         current.word = True
-        return None
 
     def search(self, word: str) -> bool:
-        def dfs(j, root):
+        
+        #     .
+        #   a   o
+        #d    y
+
+        def recursive_search(j, root):
             current = root
             for i in range(j, len(word)):
                 char = word[i]
                 if char == '.':
                     for child in current.children.values():
-
-                        if dfs(i + 1, child):
+                        if recursive_search(i + 1, child):
                             return True
                         return False
                 else:
                     if char not in current.children:
                         return False
                     current = current.children[char]
-
-            return current.word    
-                    
-                        
-
-        return dfs(0, self.root)
+            return current.word
         
-
+        return recursive_search(0, self.root)
 
 wd = WordDictionary()
 # wd.addWord("day")
@@ -51,6 +49,9 @@ wd.addWord("dally")
 wd.addWord("sad")
 wd.addWord("dad")
 wd.addWord("daisy")
+wd.addWord("dog")
 
-found = wd.search(".ad")
+found = wd.search("do..")
 print("done")
+
+        
