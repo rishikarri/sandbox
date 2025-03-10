@@ -20,26 +20,37 @@ class WordDictionary:
         return None
 
     def search(self, word: str) -> bool:
-        current = self.root
-        for idx, c in enumerate(word):   
-            if idx == (len(word) - 1) and c == '.':
-                return True
+        def dfs(j, root):
+            current = root
+            for i in range(j, len(word)):
+                char = word[i]
+                if char == '.':
+                    for child in current.children.values():
 
-            if idx == len(word) - 1 and current.children[c].word:
-                return True
-            
-            if c == '.':
-                continue
-            if c not in current.children:
-                return False
-            
-            current = current.children[c]
-        return True
+                        if dfs(i + 1, child):
+                            return True
+                        return False
+                else:
+                    if char not in current.children:
+                        return False
+                    current = current.children[char]
+
+            return current.word    
+                    
+                        
+
+        return dfs(0, self.root)
+        
 
 
 wd = WordDictionary()
-wd.addWord("day")
-wd.addWord("bay")
-wd.addWord("may")
-found = wd.search("d..")
+# wd.addWord("day")
+# wd.addWord("bay")
+# wd.addWord("may")
+wd.addWord("dally")
+wd.addWord("sad")
+wd.addWord("dad")
+wd.addWord("daisy")
+
+found = wd.search(".ad")
 print("done")
